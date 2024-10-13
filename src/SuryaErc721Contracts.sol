@@ -7,7 +7,7 @@ import "./collectionInfo.sol";
 contract SuryaErc721Contracts is ERC721, CollectionInfo {
 
    constructor(string memory _name, string memory _symbol, uint256 _supply)
-    CollectionInfo(_name, _symbol, _supply) 
+    CollectionInfo( _supply) 
     ERC721(_name, _symbol) 
    {
      

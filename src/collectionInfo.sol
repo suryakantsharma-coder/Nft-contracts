@@ -3,14 +3,10 @@ pragma solidity ^0.8.13;
 
 
 contract CollectionInfo {
-    string public collection_name;
-    string public collection_symbol;
     uint256 public supply;
     uint256 public totalSupply;
 
-    constructor (string memory _name, string memory _symbol, uint256 _supply) {
-        collection_name = _name;
-        collection_symbol = _symbol;
+    constructor (uint256 _supply) {
         supply = _supply;
         totalSupply = 1;
     }
