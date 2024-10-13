@@ -13,6 +13,16 @@ contract SuryaErc721Contracts is ERC721, CollectionInfo {
      
    }
 
+   function airdropTokens(address[] calldata _address, uint256 _amount) external {
+      require(totalSupply + (_amount * _address.length) <= supply, "Insufficient token.");
+      for (uint i = 0; i < _address.length; i++) { 
+        for (uint j = 0; j < _amount; j++) {
+        _mint(_address[i], totalSupply);
+        tokenCount();
+        }
+       }
+   }
+
    function publicMint(uint256 _amount) external _isSufficentToken {
        for (uint i = 0; i < _amount; i++) { 
         _mint(msg.sender, totalSupply);

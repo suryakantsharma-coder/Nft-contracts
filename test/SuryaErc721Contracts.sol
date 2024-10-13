@@ -7,21 +7,23 @@ import {SuryaErc721Contracts} from "../src/SuryaErc721Contracts.sol";
 contract CounterTest is Test {
     SuryaErc721Contracts public sec;
 
+    address[] _address = [
+        0xE05BAe76Cc91ef60981d8EA58c3062708e15C2C2,
+        0xcA7D2301DDd6456c6F494bB5759A323089C88b07
+    ];
+
     function setUp() public {
-        sec = new SuryaErc721Contracts("Surya", "SURYA", 10);
+        sec = new SuryaErc721Contracts("Surya", "SURYA", 20);
     }
 
     function test_Increment() public {
-        // sec.publicMint(1);
-        // console.log("Minted Successfully 1");
-        // sec.publicMint(1);
-        // console.log("Minted Successfully 2");
+        sec.airdropTokens(_address, 2);
+        console.log("Airdrop Completed");
         // assertEq(sec.totalSupply(), 3);
-        // sec.publicMint(1);
-        // console.log("Minted Successfully 3");
-        
+    }
 
-        for (uint i =1; i <= 10 ; i ++) {
+    function test_publicMint() public {
+        for (uint i =1; i <= 6 ; i ++) {
             sec.publicMint(1);
             console.log("Mint Successfull", i);
         }
