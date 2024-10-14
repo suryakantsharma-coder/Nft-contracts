@@ -50,4 +50,4 @@ OpenZeppelin's `AccessControl` is used for role-based access control:
 
 ## Installation
 
-To integrate this contract system into your project, make sure to install the OpenZeppelin contracts library:
+To integrate this contract system into your project, make sure to install the OpenZeppelin contracts library.
