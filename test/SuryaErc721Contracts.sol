@@ -13,7 +13,7 @@ contract CounterTest is Test {
     ];
 
     function setUp() public {
-        sec = new SuryaErc721Contracts("Surya", "SURYA", 20);
+        sec = new SuryaErc721Contracts("Surya", "SURYA", 20, "https://komet.me/1");
     }
 
     function test_Increment() public {
