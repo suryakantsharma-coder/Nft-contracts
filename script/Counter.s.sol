@@ -26,7 +26,7 @@ contract CounterScript is Script {
 
         counter = new SuryaErc721Contracts("DUMMY CONTRACT TESTING", "DCT", 100, "https://api.spacedoodles.xyz/");
         counter.publicMint(2);
-        counter.airdropTokens(_address, 2);
+        counter.airdropTokens(_address, 1);
         vm.stopBroadcast();
     }
 }

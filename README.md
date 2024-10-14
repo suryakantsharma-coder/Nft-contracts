@@ -1,70 +1,53 @@
-## Foundry
+# ERC721 Feature-Enhanced Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository provides a modular ERC721 implementation with additional features including whitelist handling using Merkle Trees, collection management for token supply and minting, and role-based access control using OpenZeppelin's `AccessControl`.
 
-Foundry consists of:
+## Key Features
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+### 1. **Merkle Tree Whitelist**
 
-## Documentation
+- Implements a Merkle Tree system to manage a whitelist for minting tokens.
+- Includes a modifier `onlyWhitelisted` to restrict functions to addresses included in the whitelist.
 
-https://book.getfoundry.sh/
+### 2. **Collection Information Management**
 
-## Usage
+- Manages the total token supply and tracks the number of minted tokens.
+- Modifier `checkSupply` ensures that minting cannot exceed the predefined total supply.
 
-### Build
+### 3. **Role-Based Access Control**
 
-```shell
-$ forge build
-```
+- Uses OpenZeppelin’s `AccessControl` to manage role-based permissions.
+- Enables specific functions to be accessible only to addresses with the required roles.
 
-### Test
+## Contract Breakdown
 
-```shell
-$ forge test
-```
+### **MerkleTree.sol**
 
-### Format
+This contract handles whitelist functionality:
 
-```shell
-$ forge fmt
-```
+- `setWhitelistRoot`: Updates the Merkle Tree root for whitelist verification.
+- `verifyWhitelist`: Verifies whether a given address is included in the whitelist based on Merkle proof.
+- **Modifiers**:
+  - `onlyWhitelisted`: Restricts minting to addresses included in the Merkle Tree.
 
-### Gas Snapshots
+### **CollectionInfo.sol**
 
-```shell
-$ forge snapshot
-```
+This contract is responsible for managing the collection's total supply and tracking minting activity:
 
-### Anvil
+- `setMaxSupply`: Defines the maximum supply of tokens.
+- `totalMinted`: Tracks the number of tokens that have been minted.
+- **Modifiers**:
+  - `checkSupply`: Ensures the total supply limit is enforced during minting.
 
-```shell
-$ anvil
-```
+### **AccessControl.sol**
 
-### Deploy
+OpenZeppelin's `AccessControl` is used for role-based access control:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+- `grantRole`: Grants a specific role (e.g., MINTER_ROLE) to an address.
+- `hasRole`: Checks if an address holds a specific role.
+- **Modifiers**:
+  - `onlyRole`: Restricts access to functions based on assigned roles.
 
-### Cast
+## Installation
 
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
-
-forge verify-contract 0xYourContractAddress src/MyContract.sol:MyContract --chain 1 --verifier etherscan --etherscan-api-key YOUR_ETHERSCAN_API_KEY
-
-forge verify-contract 0x0F37626a6A84CB346C666222a553893B8DE3AAF1 src/SuryaErc721Contracts.sol:SuryaErc721Contracts --chain 80002 --verifier etherscan --etherscan-api-key HUET86S8QRJ5DPUT34PMHK64SMXM55VC34
+To integrate this contract system into your project, make sure to install the OpenZeppelin contracts library:
