@@ -29,8 +29,12 @@ contract CounterTest is Test {
         }
     }
 
-    // function testFuzz_SetNumber(uint256 x) public {
-    //     counter.setNumber(x);
-    //     assertEq(counter.number(), x);
-    // }
+    function test_configure() public {
+        bytes memory _data = abi.encode(23,4,0x8b453d12b5b1a1cb2d26dca44b918212cc4c1e109f191b9d08c986d9720a6257);
+        sec.configureNftCollection(_data);
+        assertEq(sec.totalSupply(), 4);
+        console.log("Supply : ",sec.supply());
+        sec.publicMint(2);
+        assertEq(sec.totalSupply(), 6);
+    }
 }
