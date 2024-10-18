@@ -1,0 +1,8 @@
+--compile
+forge build
+
+--Deploy
+forge script script/Counter.s.sol:CounterScript --rpc-url <RPC_URL_AS_A_STRING> --broadcast
+
+--verification 
+forge script script/Counter.s.sol:CounterScript --rpc-url <RPC_URL_AS_A_STRING> --broadcast --verify etherscan --etherscan-api-key <API_KEY> -vvvv 
